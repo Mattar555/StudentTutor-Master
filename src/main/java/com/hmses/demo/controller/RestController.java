@@ -33,8 +33,9 @@ public class RestController {
 
     @PostMapping(path="/add")
     public @ResponseBody StudentTutor addNewEntry (@RequestParam String student,
-                                                   @RequestParam String tutor) {
-        return studentTutorService.addEntry(student, tutor);
+                                                   @RequestParam String tutor,
+                                                   @RequestParam String email) {
+        return studentTutorService.addEntry(student, tutor, email);
     }
 
     @PostMapping(value = "/producer")
