@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity // This defines which objects should be persisted inside the database
-@Table(name = "StudentTutor") // The table into which each entry will be inserted to
+@Table(name = "inventory") // The table into which each entry will be inserted to
 public class StudentTutor implements Serializable {
 
     @Id // This defines the primary key
@@ -22,8 +22,14 @@ public class StudentTutor implements Serializable {
     @Column(name = "Tutor", nullable = false)
     private String tutor;
 
-    @Column(name = "Confirmed")
-    private boolean confirmed;
+    @Column(name = "Email", nullable = false)
+    private String email;
+
+    @Column(name = "Sent")
+    private boolean sent;
+
+    @Column(name = "Response")
+    private int response = 0;
 
     public int getId() {
         return id;
@@ -37,8 +43,16 @@ public class StudentTutor implements Serializable {
         return tutor;
     }
 
-    public boolean getConfirmed() {
-        return confirmed;
+    public int getResponse() {
+        return response;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isSent() {
+        return sent;
     }
 
     public void setId(int id) {
@@ -53,7 +67,13 @@ public class StudentTutor implements Serializable {
         this.tutor = tutor;
     }
 
-    public void setConfirmed(boolean confirmed) {
-        this.confirmed = confirmed;
+    public void setResponse(int response) {
+        this.response = response;
+    }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 }
