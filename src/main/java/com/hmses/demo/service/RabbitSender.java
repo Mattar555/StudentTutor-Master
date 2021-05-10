@@ -23,6 +23,7 @@ public class RabbitSender {
     private String routingKey;
 
     public void send(String emailAddress) {
+        //TODO: Get acknowledgment message has been received and acted upon, update DB entry with "sent" = "true"
         rabbitTemplate.convertAndSend(exchange, routingKey, emailAddress);
     }
 }
