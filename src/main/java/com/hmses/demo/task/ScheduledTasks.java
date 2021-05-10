@@ -22,7 +22,7 @@ public class ScheduledTasks {
     // @Scheduled(cron = "0 0 6 * * *") => Every day at 6 AM
     // @Scheduled(fixedDelay = 600000) => Every 10 minutes
     @Scheduled(fixedDelay = 60000)
-    public void reportCurrentTime() {
+    public void sendNotifications() {
         List<StudentTutor> studentTutors = studentTutorService.getEmailToSend();
         studentTutors.forEach(studentTutor ->
                 rabbitSender.send(studentTutor.getEmail())
