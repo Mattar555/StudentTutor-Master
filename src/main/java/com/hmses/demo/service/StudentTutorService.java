@@ -25,6 +25,15 @@ public class StudentTutorService {
         }
     }
 
+    public void updateEntry(String email, int response) {
+        // We enforce uniqueness such that any email entry present in the data set is unique.
+        // So we are sure the list of results has a size of 1 always, hence the get(0)
+        StudentTutor studentTutor = studentTutorRepository.findByEmail(email).get(0);
+        studentTutor.setResponse(response);
+        studentTutorRepository.save(studentTutor);
+    }
+
+
     public Iterable<StudentTutor> getAllEntries() {
         return studentTutorRepository.findAll();
     }
@@ -38,9 +47,13 @@ public class StudentTutorService {
     public StudentTutor addEntry(String student,
                                  String tutor,
                                  String email) {
-        StudentTutor studentTutor = makeEntry(student, tutor, email);
-        studentTutorRepository.save(studentTutor);
-        return studentTutor;
+        // Enforcing uniqueness via email
+        if (studentTutorRepository.findByEmail(email).isEmpty()) {
+            StudentTutor studentTutor = makeEntry(student, tutor, email);
+            studentTutorRepository.save(studentTutor);
+            return studentTutor;
+        }
+        return new StudentTutor();
     }
 
     private StudentTutor makeEntry(String student,
