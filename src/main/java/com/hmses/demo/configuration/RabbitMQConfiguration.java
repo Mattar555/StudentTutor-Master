@@ -21,16 +21,17 @@ public class RabbitMQConfiguration {
     @Value("${simple.rabbitmq.exchange}")
     private String exchange;
 
-    @Value("${simple.rabbitmq.routingKey}")
-    private String routingKey;
+    @Value("${send.rabbitmq.routingKey}")
+    private String sendRoutingKey;
 
-    @Value("${simple.rabbitmq.queue}")
-    private String queue;
+    @Value("${send.rabbitmq.queue}")
+    private String sendQueue;
 
-    @Bean
-    Queue queue() {
-        return new Queue(queue, true);
-    }
+    @Value("${receive.rabbitmq.routingKey}")
+    private String receiveRoutingKey;
+
+    @Value("${receive.rabbitmq.queue}")
+    private String receiveQueue;
 
     @Bean
     DirectExchange directExchange() {
@@ -38,11 +39,29 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    Binding binding(Queue queue, DirectExchange directExchange) {
+    Queue sendQueue() {
+        return new Queue(sendQueue, true);
+    }
+
+    @Bean
+    Queue receiveQueue() {
+        return new Queue(receiveQueue, true);
+    }
+
+    @Bean
+    Binding sendBinding(Queue sendQueue, DirectExchange directExchange) {
         return BindingBuilder
-                .bind(queue)
+                .bind(sendQueue)
                 .to(directExchange)
-                .with(routingKey);
+                .with(sendRoutingKey);
+    }
+
+    @Bean
+    Binding receiveBinding(Queue receiveQueue, DirectExchange directExchange) {
+        return BindingBuilder
+                .bind(receiveQueue)
+                .to(directExchange)
+                .with(receiveRoutingKey);
     }
 
     @Bean
