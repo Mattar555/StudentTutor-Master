@@ -31,6 +31,9 @@ public class StudentTutor implements Serializable {
     @Column(name = "Response")
     private int response = 0;
 
+    @Column(name = "Avatar")
+    private String avatar = "";
+
     public int getId() {
         return id;
     }
@@ -55,6 +58,10 @@ public class StudentTutor implements Serializable {
         return sent;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -75,5 +82,9 @@ public class StudentTutor implements Serializable {
 
     public void setSent(boolean sent) {
         this.sent = sent;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

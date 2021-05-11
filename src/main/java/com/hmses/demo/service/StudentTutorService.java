@@ -19,7 +19,7 @@ public class StudentTutorService {
 
     @PostConstruct
     private void populateWithDummyEntry() {
-        StudentTutor studentTutor = makeEntry("Student", "Tutor", "Email");
+        StudentTutor studentTutor = makeEntry("Student", "Tutor", "fake@gmail.com");
         if (studentTutorRepository.count() == 0) {
             studentTutorRepository.save(studentTutor);
         }
