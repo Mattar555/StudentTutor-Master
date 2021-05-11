@@ -44,12 +44,9 @@ public class StudentTutorService {
                 .collect(Collectors.toList());
     }
 
-    public StudentTutor addEntry(String student,
-                                 String tutor,
-                                 String email) {
+    public StudentTutor addEntry(StudentTutor studentTutor) {
         // Enforcing uniqueness via email
-        if (studentTutorRepository.findByEmail(email).isEmpty()) {
-            StudentTutor studentTutor = makeEntry(student, tutor, email);
+        if (studentTutorRepository.findByEmail(studentTutor.getEmail()).isEmpty()) {
             studentTutorRepository.save(studentTutor);
             return studentTutor;
         }

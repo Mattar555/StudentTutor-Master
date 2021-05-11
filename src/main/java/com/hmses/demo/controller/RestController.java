@@ -8,16 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
 @Controller
 @RequestMapping(path = "/demo")
+// Obviously, only allow only the name of the docker container here (http://docker_container_name_here:port_here)
+@CrossOrigin
 public class RestController {
 
     @Autowired
@@ -32,10 +30,8 @@ public class RestController {
     }
 
     @PostMapping(path="/add")
-    public @ResponseBody StudentTutor addNewEntry (@RequestParam String student,
-                                                   @RequestParam String tutor,
-                                                   @RequestParam String email) {
-        return studentTutorService.addEntry(student, tutor, email);
+    public @ResponseBody StudentTutor addNewEntry (@RequestBody StudentTutor studentTutor) {
+        return studentTutorService.addEntry(studentTutor);
     }
 
     @PostMapping(value = "/producer")
