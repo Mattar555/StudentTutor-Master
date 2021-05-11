@@ -30,8 +30,18 @@ public class RestController {
     }
 
     @PostMapping(path="/add")
-    public @ResponseBody StudentTutor addNewEntry (@RequestBody StudentTutor studentTutor) {
+    public @ResponseBody StudentTutor addNewEntry(@RequestBody StudentTutor studentTutor) {
         return studentTutorService.addEntry(studentTutor);
+    }
+
+    @PutMapping(path = "/update")
+    public @ResponseBody StudentTutor updateExistingEntry(@RequestBody StudentTutor studentTutor) {
+        return studentTutorService.updateEntry(studentTutor);
+    }
+
+    @DeleteMapping(path="/delete")
+    public @ResponseBody void deleteEntry(@RequestParam(name = "id") int id) {
+        studentTutorService.deleteEntry(id);
     }
 
     @PostMapping(value = "/producer")

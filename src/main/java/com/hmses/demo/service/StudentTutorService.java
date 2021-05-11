@@ -53,6 +53,14 @@ public class StudentTutorService {
         return new StudentTutor();
     }
 
+    public StudentTutor updateEntry(StudentTutor studentTutor) {
+        return studentTutorRepository.save(studentTutor);
+    }
+
+    public void deleteEntry(int studentTutorID) {
+        studentTutorRepository.deleteById(studentTutorID);
+    }
+
     private StudentTutor makeEntry(String student,
                                    String tutor,
                                    String email) {
