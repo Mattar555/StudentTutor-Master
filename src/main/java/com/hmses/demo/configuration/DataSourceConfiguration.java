@@ -31,21 +31,4 @@ public class DataSourceConfiguration {
         dataSourceBuilder.url(url);
         return dataSourceBuilder.build();
     }
-
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-//        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-//        em.setDataSource(dataSource);
-//        em.setPackagesToScan("com.hmses.demo");
-//
-//        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        em.setJpaVendorAdapter(vendorAdapter);
-//
-//        Properties properties = new Properties();
-//        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLMyISAMDialect");
-//        properties.setProperty("hibernate.hbm2ddl.auto", "update");
-//        em.setJpaProperties(properties);
-//
-//        return em;
-//    }
 }
