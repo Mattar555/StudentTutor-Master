@@ -1,11 +1,15 @@
 package com.hmses.demo.controller;
 
+import com.hmses.demo.domain.AdminUser;
 import com.hmses.demo.domain.StudentTutor;
+import com.hmses.demo.service.AdminService;
 import com.hmses.demo.service.RabbitSender;
 import com.hmses.demo.service.StudentTutorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +24,9 @@ public class RestController {
 
     @Autowired
     private StudentTutorService studentTutorService;
+
+    @Autowired
+    private AdminService adminService;
 
     @Autowired
     private RabbitSender rabbitSender;
@@ -44,6 +51,10 @@ public class RestController {
         studentTutorService.deleteEntry(id);
     }
 
+    @PutMapping(path = "/validate")
+    public ResponseEntity<?> validateCredentials(@RequestBody AdminUser adminUser) {
+        return new ResponseEntity<>(adminService.validateAdmin(adminUser) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED);
+    }
     @PostMapping(value = "/producer")
     public String producer(@RequestParam(value="message") String message) throws IOException {
         rabbitSender.send(message);
