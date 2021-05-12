@@ -1,0 +1,75 @@
+version: '3'
+services:
+
+#  busybox:
+#    container_name: busybox
+#    image: busybox
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://student-tutor-db:3306"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+#      command: "tail -f /dev/null"
+#    networks:
+#      - spring-cloud-network
+
+  sql-server:
+    container_name: student-tutor-db
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "my-secret-pw"
+      MYSQL_DATABASE: "student_tutor"
+      MYSQL_USER: "marwan"
+      MYSQL_PASSWORD: "attar"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    networks:
+      - spring-cloud-network
+
+  messaging-broker:
+    container_name: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "user"
+      RABBITMQ_DEFAULT_PASS: "password"
+    networks:
+      - spring-cloud-network
+
+  student-tutor-master:
+    container_name: student-tutor-master
+    image: marwanium/student-tutor-master:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - messaging-broker
+      - sql-server
+    environment:
+      spring.rabbitmq.host: "rabbit"
+      spring.rabbitmq.port: "5672"
+      spring.rabbitmq.username: "user"
+      spring.rabbitmq.password: "password"
+      spring.rabbitmq.exchange: "direct_exchange"
+      send.rabbitmq.queue: "send_queue"
+      send.rabbitmq.routingKey: "receive_queue"
+      receive.rabbitmq.queue: "receive_queue"
+      receive.rabbitmq.routingKey: "receive_key"
+      spring.datasource.username: "marwan"
+      spring.datasource.password: "attar"
+      spring.datasource.url: "jdbc:mysql://student-tutor-db:3306/student_tutor"
+      web.auth.username: "marwan.attar93@gmail.com"
+      web.auth.password: "attario"
+    networks:
+      - spring-cloud-network
+
+
+networks:
+  spring-cloud-network:
+    driver: bridge
