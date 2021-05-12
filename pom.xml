@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>accessing-data-mysql</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>student-tutor-master</artifactId>
+	<version>SNAPSHOT</version>
 	<name>Demo-Master</name>
 	<description>Demo project for Spring Boot: Master Node</description>
 	<properties>
