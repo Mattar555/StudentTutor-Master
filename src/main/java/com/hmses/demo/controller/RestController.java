@@ -55,10 +55,5 @@ public class RestController {
     public ResponseEntity<?> validateCredentials(@RequestBody AdminUser adminUser) {
         return new ResponseEntity<>(adminService.validateAdmin(adminUser) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED);
     }
-    @PostMapping(value = "/producer")
-    public String producer(@RequestParam(value="message") String message) throws IOException {
-        rabbitSender.send(message);
-        return "Message sent to the RabbitMQ Successfully";
-    }
 
 }
