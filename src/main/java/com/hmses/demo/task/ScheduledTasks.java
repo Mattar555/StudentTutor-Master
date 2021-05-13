@@ -19,9 +19,9 @@ public class ScheduledTasks {
     @Autowired
     private StudentTutorService studentTutorService;
 
-    // @Scheduled(cron = "0 0 6 * * *") => Every day at 6 AM
+    @Scheduled(cron = "0 0 6 * * *") // Every day, at 6AM.
     // @Scheduled(fixedDelay = 600000) => Every 10 minutes
-    @Scheduled(fixedDelay = 60000)
+    // @Scheduled(fixedDelay = 60000) => Every minute
     public void sendNotifications() {
         List<StudentTutor> studentTutors = studentTutorService.getEmailToSend();
         studentTutors.forEach(studentTutor ->
