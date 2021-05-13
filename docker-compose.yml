@@ -43,6 +43,16 @@ services:
     networks:
       - spring-cloud-network
 
+  student-tutor-web:
+    container_name: student-tutor-web
+    image: marwanium/student-tutor-web:latest
+    ports:
+      - "3000:80"
+    depends_on:
+      - student-tutor-master
+    networks:
+      - spring-cloud-network
+
   student-tutor-master:
     container_name: student-tutor-master
     image: marwanium/student-tutor-master:latest
