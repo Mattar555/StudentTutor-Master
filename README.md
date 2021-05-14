@@ -13,6 +13,6 @@ This is where I drew inspiration for this application.
 
 # Additonal Information
 
-Note this application is a proof of concept. It was completed in a matter of days and is mainly aimed at showcasing my capbilities as a developer. One can, with relative ease, leverage cloud based SAAS providers, to replicate, extend and maintain an application such as the one described above. Taking AWS as an example, the use of S3, Lambda, EventBridge, Macie (for added security) along with SNS/SES offers a flexible, serverless, easy to maintain and low cost alternative to the above.
+Please note this application is a proof of concept. It was completed in a matter of days and is mainly aimed at showcasing my capbilities as a developer. One can, with relative ease, leverage cloud based SAAS providers, to replicate, extend and maintain an application such as the one described above. Taking AWS as an example, the use of S3, Lambda, EventBridge, Macie (for added security) along with SNS/SES offers a flexible, serverless, easy to maintain and low cost alternative to the above.
 
 Please refer to the folder named "doc" for a deeper technical overview to the inner workings of this application.
