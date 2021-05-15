@@ -15,5 +15,6 @@ The diagram given below effectively summarizes the above in a graphical manner.
 
 # Architecture Diagram
 
+
 ![image](https://user-images.githubusercontent.com/21075687/118350978-b7510d00-b59c-11eb-9b8b-a037cc0ab930.png)
 
