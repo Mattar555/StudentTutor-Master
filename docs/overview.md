@@ -10,3 +10,9 @@ The frontend is written in React, whereas the backend is written in Java utilizi
 4) RabbitMQ: As described above, communication between the Master, Writer and Reader is achieved via a messaging broker. RabbitMQ was the broker of choice. The entire setup consists of an exchange object, two routing keys and two dedicated queues, one for each key. The "writer-queue" enables communication between the Master and the Writer, whereas the "reader-queue" enables communication between the Master and the Reader. The Writer is "Reader agnostic" (and vice versa, the Reader is "Writer agnostic") due to mutual exclusivity of roles.
 5) SQL: A pair of SQL servers in a master slave configuration of set up to ensure redundancy. Read requests are load balanced and write requests are replicated. A check is performed every minute to verify whether or not any disabled databases (due to connectivity issues) can be re-enabled. Synchronization is subsequently performed aysnchronously prior to rejoining the cluster.
 6) Student-Tutor-Web: This is a React application hosted on an Nginx server with basic user authentication enabled. A HTTP call is performed to an endpoint on the Master node on every page load/refresh. This endpoint retrieves the contents of the SQL table and renders it in a tabular fashion for the user to view.
+
+The diagram given below effectively summarizes the above in a graphical manner.
+
+# Architecture Diagram
+
+![image](https://user-images.githubusercontent.com/21075687/118350914-60e3ce80-b59c-11eb-8528-b120282fbed7.png)
