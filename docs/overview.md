@@ -19,3 +19,10 @@ The diagram given below effectively summarizes the above in a graphical manner.
 ![image](https://user-images.githubusercontent.com/21075687/118351104-43633480-b59d-11eb-993f-b80ae3ca99b0.png)
 
 
+# Links
+
+1) Writer: https://github.com/Mattar555/SudentTutor-Worker-Send-Node
+2) Reader: https://github.com/Mattar555/StudentTutor-Worker-Read-Node
+3) Web: https://github.com/Mattar555/StudentTutor-Web
+
+
